@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Form, Button, Col, Row, Jumbotron } from "react-bootstrap";
 import axios from "axios";
-import Calendar from "react-calendar";
+import DatePicker from "react-datepicker";
 
 import API from "../../utils/api_end_points";
 
@@ -25,14 +25,14 @@ class AssignTask extends Component {
       user,
       title: "",
       description: "",
-      deadline: "",
+      deadline: new Date(),
       taskAssigned: false
     };
   }
   onSubmit = async e => {
     try {
       e.preventDefault();
-      const { user, title, description, deadline } = this.state;
+      let { user, title, description, deadline } = this.state;
       const { token } = JSON.parse(localStorage.getItem("user"));
       const config = {
         headers: { Authorization: `Bearer ${token}` }
@@ -89,9 +89,14 @@ class AssignTask extends Component {
               </Form.Group>
               <Form.Group>
                 <Form.Label>Deadline</Form.Label>
-                <Calendar
+                <DatePicker
+                  selected={deadline}
                   onChange={date => this.setState({ deadline: date })}
-                  value={deadline}
+                  showTimeSelect
+                  timeFormat="HH:mm"
+                  timeIntervals={15}
+                  timeCaption="time"
+                  dateFormat="MMMM d, yyyy h:mm aa"
                 />
               </Form.Group>
               <Form.Group>

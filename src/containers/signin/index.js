@@ -35,13 +35,19 @@ const Signin = () => {
     try {
       e.preventDefault();
       const res = await axios.post(API.signin, { email, password });
-      const user = { token: res.data.token, role: res.data.role, status: true };
+      const user = {
+        token: res.data.token,
+        email: res.data.email,
+        role: res.data.role,
+        status: true
+      };
       localStorage.setItem("user", JSON.stringify(user));
       setLogginedIn(true);
     } catch (e) {
       console.log(e.message);
     }
   };
+
   return (
     <Wrapper>
       {logginedIn === true ? (

@@ -47,12 +47,10 @@ class Task extends Component {
 
   render() {
     const { taskList } = this.state;
-    console.log(taskList);
     return (
       <Wrapper>
         <Title>Your Todo List</Title>
-        {taskList &&
-          taskList.map(task => <TaskTable key={task._id} task={task} />)}
+        {taskList && <TaskTable taskList={taskList} />}
       </Wrapper>
     );
   }

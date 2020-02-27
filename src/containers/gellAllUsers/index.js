@@ -75,6 +75,10 @@ class GetAllUsers extends Component {
     this.props.history.push("/editprofile", user);
   };
 
+  onGetShifts = user => {
+    this.props.history.push("/approvedrops", user);
+  };
+
   onDeleteProfile = async user => {
     try {
       const URL = API.removeUser + user._id;
@@ -121,6 +125,7 @@ class GetAllUsers extends Component {
               <th>Assign Shift</th>
               <th></th>
               <th></th>
+              <th>Approve Drop Shifts</th>
             </tr>
           </thead>
           <tbody>
@@ -153,6 +158,11 @@ class GetAllUsers extends Component {
                   <td>
                     <Button onClick={() => this.onDeleteProfile(user)}>
                       Delete
+                    </Button>
+                  </td>
+                  <td>
+                    <Button onClick={() => this.onGetShifts(user)}>
+                      Get Shifts
                     </Button>
                   </td>
                 </tr>

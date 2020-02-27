@@ -1,8 +1,9 @@
 import React from "react";
 import { Form, Button, Col, Row, Jumbotron, Table } from "react-bootstrap";
+import RenderRow from "./renderRow";
 
-const TaskTable = props => {
-  const { task } = props;
+const TaskTable = ({ taskList }) => {
+  // console.log(task);
   return (
     <React.Fragment>
       <Table>
@@ -15,12 +16,9 @@ const TaskTable = props => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>{task._id}</td>
-            <td>{task.title}</td>
-            <td>{task.description}</td>
-            <td>{task.deadline}</td>
-          </tr>
+          {taskList.map(task => (
+            <RenderRow task={task} />
+          ))}
         </tbody>
       </Table>
     </React.Fragment>

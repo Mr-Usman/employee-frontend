@@ -10,8 +10,12 @@ import CreateProfile from "./containers/createProfile";
 import EditProfile from "./containers/editProfile/editProfile";
 import AssignTask from "./containers/assignTask/assignTask";
 import AssignShift from "./containers/assignShift/assignShift";
+import ApproveDrops from "./containers/approveDrops";
+import matchUsers from "./containers/developer/matchUsers";
+import SwapShift from "./containers/developer/swapShift";
 
 import Task from "./containers/developer/task";
+import Shift from "./containers/developer/shifts";
 
 import GetAllUsers from "./containers/gellAllUsers";
 
@@ -66,6 +70,30 @@ class Routes extends Component {
             login={login}
             role={role}
             component={Task}
+          />
+          <PrivateRoute
+            path="/timings"
+            login={login}
+            role={role}
+            component={Shift}
+          />
+          <PrivateRoute
+            path="/approvedrops"
+            login={login}
+            role={role}
+            component={ApproveDrops}
+          />
+          <PrivateRoute
+            path="/matchusers"
+            login={login}
+            role={role}
+            component={matchUsers}
+          />
+          <PrivateRoute
+            path="/swapshift"
+            login={login}
+            role={role}
+            component={SwapShift}
           />
           <Route exact path="/" component={Signin} />
         </Switch>
